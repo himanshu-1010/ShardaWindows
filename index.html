@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharda uPVC Windows & Doors</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom configuration for Inter font and colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // ADJUSTED COLORS FOR DARK MODE
+                        'primary-blue': '#60a5fa', // Lighter Blue for contrast
+                        'secondary-gray': '#1a1a1a', // Main dark background (light black)
+                        'card-bg': '#262626', // Slightly lighter dark background for cards
+                        'accent-green': '#4ade80', // Lighter Green for CTAs
+                        'error-red': '#f87171', // Lighter Red
+                        'error-bg': '#b91c1c', // Dark Red background
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Ensuring smooth transition for navigation and elements */
+        .transition-all { transition: all 0.3s ease-in-out; }
+
+        /* Style for active navigation link */
+        .nav-link.active {
+            border-bottom: 3px solid #4ade80; /* Accent green underline (lightened) */
+            color: #60a5fa; /* Primary blue active link (lightened) */
+            font-weight: 600;
+        }
+
+        /* Responsive container centering */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Custom scrollbar styling for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563; /* Darker thumb */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+
+        /* Utility for aspect ratio container */
+        .aspect-video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .aspect-video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Logo Text Shadow for a premium look */
+        .text-shadow-custom {
+            /* Adjusted shadow color for dark mode contrast */
+            text-shadow: 1px 1px 3px rgba(96, 165, 250, 0.4); 
+        }
+
+        /* --- Logo Animation --- */
+        @keyframes color-pulse {
+            0% { color: #60a5fa; } /* Start: Primary Blue (lightened) */
+            50% { color: #4ade80; } /* Middle: Accent Green (lightened) */
+            100% { color: #60a5fa; } /* End: Primary Blue (lightened) */
+        }
+
+        .logo-animated {
+            animation: color-pulse 4s infinite ease-in-out;
+        }
+        
+        /* --- Custom Background for Home Hero Section (Using uploaded image) --- */
+        .home-hero-bg {
+            position: relative; 
+            overflow: hidden; 
+            min-height: 500px; 
+        }
+        
+        .home-hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Set the uploaded image for the pseudo-element background */
+            background-image: url('uploaded:Gemini_Generated_Image_rdy7sprdy7sprdy7.jpg-a6c13daf-36a9-486e-90cf-009fe48c37e1');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3; /* Adjusted opacity for dark mode */
+            z-index: 0; 
+            pointer-events: none; 
+        }
+
+        /* --- Custom Gradient for Header (DARK MODE) --- */
+        .header-bg-gradient {
+            background-color: #1a1a1a; /* Fallback */
+            /* Using dark shades for the gradient */
+            background-image: linear-gradient(to right, #1f2937 0%, #1a1a1a 100%); 
+            background-repeat: repeat;
+            background-position: left top;
+            background-size: 100%;
+            transition: background-image 0.5s ease; 
+        }
+
+        /* Styling for the chatbot elements */
+        .chat-user-bubble {
+            background-color: #60a5fa; /* Primary Blue */
+            color: white;
+            padding: 0.75rem;
+            border-radius: 1rem;
+            border-bottom-right-radius: 0;
+            max-width: 80%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .chat-bot-bubble {
+            background-color: #262626; /* Card BG */
+            color: #e5e7eb; /* Light Gray */
+            padding: 0.75rem;
+            border-radius: 1rem;
+            border-bottom-left-radius: 0;
+            max-width: 80%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            border: 1px solid #374151; /* Darker border for definition */
+        }
+    </style>
+</head>
+<body class="bg-secondary-gray text-gray-300 font-sans">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 header-bg-gradient shadow-xl">
+        <div class="container flex justify-between items-center py-4">
+            
+            <!-- Logo Section -->
+            <div class="flex items-center space-x-3">
+                <!-- Placeholder for Generated uPVC Icon Image -->
+                <!-- UPDATED: Ensure logo background is dark in dark mode -->
+                <div id="upvc-logo-image" class="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-lg p-1 bg-card-bg relative z-10">
+                    <!-- Initial content will be a spinner/fallback -->
+                </div>
+                <h1 class="text-xl md:text-3xl font-extrabold text-primary-blue logo-animated text-shadow-custom">
+                    Sharda uPVC Windows
+                </h1>
+            </div>
+            
+            <nav id="navbar" class="flex space-x-6 md:space-x-10">
+                <!-- UPDATED: Default link color changed to gray-400, hover to gray-200 -->
+                <a href="#home" class="nav-link text-lg text-gray-400 hover:text-gray-200 transition-all" data-section="home">Home</a>
+                <a href="#services" class="nav-link text-lg text-gray-400 hover:text-gray-200 transition-all" data-section="services">Services</a>
+                <a href="#gallery" class="nav-link text-lg text-gray-400 hover:text-gray-200 transition-all" data-section="gallery">Gallery</a>
+                <a href="#contact" class="nav-link text-lg text-gray-400 hover:text-gray-200 transition-all" data-section="contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area - Sections -->
+    <main class="py-8">
+        <!-- Home Section -->
+        <section id="home" class="home-hero-bg container py-16 hidden rounded-3xl shadow-2xl my-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center w-full relative z-10">
+                <!-- UPDATED: Replaced bg-white/90 with bg-card-bg/90 and updated text colors -->
+                <div class="space-y-6 bg-card-bg/90 p-8 rounded-2xl shadow-xl backdrop-blur-sm">
+                    <span class="text-accent-green font-semibold uppercase tracking-widest">Site-Specific Custom Fabrication</span>
+                    <h2 class="text-5xl md:text-6xl font-extrabold text-white leading-tight">
+                        Engineered uPVC Windows & Doors, Perfectly Fitted.
+                    </h2>
+                    <p class="text-xl text-gray-400">
+                        At **Sharda uPVC Windows**, we don't just sell windows; we deliver a precise solution. Our process starts with a mandatory, detailed site inspection to ensure every window and door is custom-made for an impeccable fit and superior performance.
+                    </p>
+                    <a href="#services" class="inline-block px-8 py-3 bg-primary-blue text-white font-semibold rounded-lg shadow-lg hover:bg-primary-blue/90 transition-all">
+                        See Our Process
+                    </a>
+                </div>
+                <div class="hidden md:block h-64"></div>
+            </div>
+            
+            <!-- UPDATED: Replaced bg-white/90 with bg-card-bg/90 and updated text colors -->
+            <div class="py-16 bg-card-bg/90 rounded-3xl shadow-xl mt-16 p-8 relative z-10 backdrop-blur-sm">
+                <h3 class="text-3xl font-bold text-center text-primary-blue mb-10">Why Upgrade to Sharda uPVC?</h3>
+                <div class="grid md:grid-cols-4 gap-8 text-center">
+                    <!-- UPDATED: Replaced bg-white with bg-card-bg -->
+                    <div class="p-4 rounded-xl bg-card-bg shadow-lg transition-all duration-300 transform hover:scale-[1.03] hover:shadow-2xl cursor-pointer hover:bg-gray-800">
+                        <span class="text-5xl text-accent-green mb-3 inline-block">🌡️</span>
+                        <h4 class="text-xl font-semibold text-white mb-2">Superior Insulation</h4>
+                        <p class="text-gray-400 text-sm">Significantly reduces heat loss, saving up to 30% on energy bills and maintaining comfortable indoor temperatures year-round.</p>
+                    </div>
+                    <!-- UPDATED: Replaced bg-white with bg-card-bg -->
+                    <div class="p-4 rounded-xl bg-card-bg shadow-lg transition-all duration-300 transform hover:scale-[1.03] hover:shadow-2xl cursor-pointer hover:bg-gray-800">
+                        <span class="text-5xl text-primary-blue mb-3 inline-block">🛡️</span>
+                        <h4 class="text-xl font-semibold text-white mb-2">Maximum Security</h4>
+                        <p class="text-gray-400 text-sm">Reinforced frames and multi-point locking systems provide exceptional resistance against forced entry for complete peace of mind.</p>
+                    </div>
+                    <!-- UPDATED: Replaced bg-white with bg-card-bg -->
+                    <div class="p-4 rounded-xl bg-card-bg shadow-lg transition-all duration-300 transform hover:scale-[1.03] hover:shadow-2xl cursor-pointer hover:bg-gray-800">
+                        <span class="text-5xl text-accent-green mb-3 inline-block">🔇</span>
+                        <h4 class="text-xl font-semibold text-white mb-2">Noise Reduction</h4>
+                        <p class="text-gray-400 text-sm">The specialized profile structure and double-glazing effectively block external noise, creating a quieter living environment.</p>
+                    </div>
+                    <!-- UPDATED: Replaced bg-white with bg-card-bg -->
+                    <div class="p-4 rounded-xl bg-card-bg shadow-lg transition-all duration-300 transform hover:scale-[1.03] hover:shadow-2xl cursor-pointer hover:bg-gray-800">
+                        <span class="text-5xl text-primary-blue mb-3 inline-block">✨</span>
+                        <h4 class="text-xl font-semibold text-white mb-2">Zero Maintenance</h4>
+                        <p class="text-gray-400 text-sm">uPVC is highly durable, corrosion-resistant, and never requires sanding or painting—just a simple wipe to look brand new.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="py-12 px-8 bg-primary-blue text-white rounded-3xl shadow-2xl mt-16 text-center relative z-10">
+                <h3 class="text-3xl font-bold mb-4">Our Promise: Precision, Quality, Guarantee.</h3>
+                <p class="text-lg mb-6 max-w-3xl mx-auto">
+                    Every Sharda uPVC installation comes with a comprehensive **10-year warranty**, backed by our commitment to site-specific customization and professional installation.
+                </p>
+                <a href="#contact" class="inline-block px-8 py-3 bg-accent-green text-white font-bold rounded-lg shadow-lg hover:bg-accent-green/90 transition-all transform hover:scale-105">
+                    Request Your Free Site Look Today
+                </a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="container py-24 hidden">
+            <h2 class="text-4xl font-bold text-center text-primary-blue mb-12">Our Simple 3-Step Process</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- UPDATED: Replaced bg-white with bg-card-bg and updated text colors -->
+                <div class="bg-card-bg p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all border-t-4 border-accent-green">
+                    <div class="text-4xl text-accent-green mb-4">🔍</div>
+                    <h3 class="text-2xl font-semibold text-white mb-3">1. Detailed Site Inspection</h3>
+                    <p class="text-gray-400">
+                        The foundation of our quality. We personally visit your site to take precise measurements, assess structural requirements, and discuss your specific needs for noise reduction, security, and aesthetics.
+                    </p>
+                </div>
+                <!-- UPDATED: Replaced bg-white with bg-card-bg and updated text colors -->
+                <div class="bg-card-bg p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all border-t-4 border-primary-blue">
+                    <div class="text-4xl text-primary-blue mb-4">🛠️</div>
+                    <h3 class="text-2xl font-semibold text-white mb-3">2. Precision Fabrication</h3>
+                    <p class="text-gray-400">
+                        Based on the site look, we fabricate your uPVC windows and doors in our facility using high-grade materials and strict quality control standards, ensuring they meet the exact specifications discussed.
+                    </p>
+                </div>
+                <!-- UPDATED: Replaced bg-white with bg-card-bg and updated text colors -->
+                <div class="bg-card-bg p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all border-t-4 border-accent-green">
+                    <div class="text-4xl text-accent-green mb-4">✅</div>
+                    <h3 class="text-2xl font-semibold text-white mb-3">3. Professional Installation</h3>
+                    <p class="text-gray-400">
+                        Our expert team handles the installation process efficiently and cleanly. The site-specific design guarantees a seamless fit, maximizing energy efficiency and extending the life of your new uPVC products.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="container py-24 hidden">
+            <h2 class="text-4xl font-bold text-center text-primary-blue mb-12">Our Work: uPVC Gallery & Videos</h2>
+            <p class="text-center text-lg text-gray-400 mb-12">Showcasing the variety and quality of our custom uPVC window and door installations across different properties.</p>
+            
+            <!-- Image Gallery Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <!-- UPDATED: Replaced bg-white with bg-card-bg and updated text colors -->
+                <div class="bg-card-bg rounded-xl overflow-hidden shadow-xl">
+                    <img src="https://images.pexels.com/photos/1018610/pexels-photo-1018610.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                         alt="uPVC Sliding Window Example" class="w-full h-48 object-cover">
+                    <p class="p-4 font-semibold text-gray-200">Classic Sliding Window</p>
+                </div>
+                <!-- UPDATED: Replaced bg-white with bg-card-bg and updated text colors -->
+                <div class="bg-card-bg rounded-xl overflow-hidden shadow-xl">
+                    <img src="https://images.pexels.com/photos/11417534/pexels-photo-11417534.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                         alt="uPVC Casement Door Example" class="w-full h-48 object-cover">
+                    <p class="p-4 font-semibold text-gray-200">Durable Casement Door</p>
+                </div>
+                <!-- UPDATED: Replaced bg-white with bg-card-bg and updated text colors -->
+                <div class="bg-card-bg rounded-xl overflow-hidden shadow-xl">
+                    <img src="https://images.pexels.com/photos/11417511/pexels-photo-11417511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                         alt="uPVC Tilt and Turn Window Example" class="w-full h-48 object-cover">
+                    <p class="p-4 font-semibold text-gray-200">Efficient Tilt & Turn Window</p>
+                </div>
+                <!-- UPDATED: Replaced bg-white with bg-card-bg and updated text colors -->
+                <div class="bg-card-bg rounded-xl overflow-hidden shadow-xl">
+                    <img src="https://images.pexels.com/photos/259962/pexels-photo-259962.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                         alt="Large uPVC Bay Window Project" class="w-full h-48 object-cover">
+                    <p class="p-4 font-semibold text-gray-200">Large Bay Window Project</p>
+                </div>
+                <!-- UPDATED: Replaced bg-white with bg-card-bg and updated text colors -->
+                <div class="bg-card-bg rounded-xl overflow-hidden shadow-xl">
+                    <img src="https://images.pexels.com/photos/11171353/pexels-photo-11171353.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                         alt="uPVC Installation in a commercial office" class="w-full h-48 object-cover">
+                    <p class="p-4 font-semibold text-gray-200">Commercial Office Installation</p>
+                </div>
+                <!-- UPDATED: Replaced bg-white with bg-card-bg and updated text colors -->
+                <div class="bg-card-bg rounded-xl overflow-hidden shadow-xl">
+                    <img src="https://images.pexels.com/photos/1294860/pexels-photo-1294860.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                         alt="uPVC Window Soundproofing Demonstration" class="w-full h-48 object-cover">
+                    <p class="p-4 font-semibold text-gray-200">Soundproofing Demonstration</p>
+                </div>
+            </div>
+
+            <!-- Video Section -->
+            <h3 class="text-3xl font-bold text-center text-gray-300 mb-8 mt-12">Videos: See Our Work in Action</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- UPDATED: Replaced bg-white with bg-card-bg and updated text colors -->
+                <div class="bg-card-bg rounded-xl shadow-xl p-6">
+                    <div class="aspect-video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/NuBYWUFiuww?rel=0" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen 
+                            class="rounded-lg">
+                        </iframe>
+                    </div>
+                    <p class="mt-3 text-lg font-semibold text-gray-200">Our Site Look and Installation Process (2:17 min)</p>
+                    <p class="text-sm text-gray-400">A step-by-step guide from initial consultation to final inspection.</p>
+                </div>
+                <!-- UPDATED: Replaced bg-white with bg-card-bg and updated text colors -->
+                <div class="bg-card-bg rounded-xl shadow-xl p-6">
+                    <div class="aspect-video-container">
+                         <iframe 
+                            src="https://www.youtube.com/embed/YB0TboRJSoE?rel=0" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen 
+                            class="rounded-lg">
+                        </iframe>
+                    </div>
+                    <p class="mt-3 text-lg font-semibold text-gray-200">Key Features of **uPVC Windows** (1:07 min)</p>
+                    <p class="text-sm text-gray-400">Highlighting insulation, security, and maintenance benefits.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="container py-24 hidden">
+            <h2 class="text-4xl font-bold text-center text-primary-blue mb-12">Get Started with a Site Look</h2>
+            
+            <!-- UPDATED: Replaced bg-white with bg-card-bg and updated text colors -->
+            <div class="grid md:grid-cols-2 gap-12 bg-card-bg p-8 md:p-12 rounded-xl shadow-2xl">
+                <!-- Contact Form -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Request a Free Consultation</h3>
+                    
+                    <form id="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-4">
+                        <div>
+                            <!-- UPDATED: Text color for labels -->
+                            <label for="name" class="block text-sm font-medium text-gray-300">Full Name</label>
+                            <!-- UPDATED: Input colors for dark mode -->
+                            <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-lg border-gray-600 bg-gray-700 text-white shadow-sm p-3 border focus:border-primary-blue focus:ring focus:ring-primary-blue/50">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300">Email Address</label>
+                            <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-lg border-gray-600 bg-gray-700 text-white shadow-sm p-3 border focus:border-primary-blue focus:ring focus:ring-primary-blue/50">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-300">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required class="mt-1 block w-full rounded-lg border-gray-600 bg-gray-700 text-white shadow-sm p-3 border focus:border-primary-blue focus:ring focus:ring-primary-blue/50">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300">Project Details (e.g., location, window type)</label>
+                            <textarea id="message" name="message" rows="4" required class="mt-1 block w-full rounded-lg border-gray-600 bg-gray-700 text-white shadow-sm p-3 border focus:border-primary-blue focus:ring focus:ring-primary-blue/50"></textarea>
+                        </div>
+                        <button type="submit" id="submit-button" class="w-full px-4 py-3 bg-accent-green text-white font-semibold rounded-lg shadow-md hover:bg-accent-green/90 transition-all">
+                            Submit Request
+                        </button>
+                    </form>
+                    <!-- UPDATED: Alert background/text colors for dark mode -->
+                    <div id="form-message" class="mt-4 p-3 rounded-lg text-center bg-gray-800 text-yellow-400" role="alert">
+                        <p class="font-bold">Important:</p> 
+                        <p class="text-sm">This form uses Formspree and will redirect to their confirmation page upon successful submission. Replace 'YOUR_FORMSPREE_ID' with your form's actual ID.</p>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-semibold text-white">Contact Information</h3>
+                    <p class="text-gray-400">
+                        We are ready to schedule your complimentary site inspection.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <span class="text-accent-green mr-3 mt-1">📞</span>
+                            <div>
+                                <p class="font-medium">Call Us:</p>
+                                <p class="text-primary-blue font-bold text-xl">+91 87501 01290</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <span class="text-accent-green mr-3 mt-1">📧</span>
+                            <div>
+                                <p class="font-medium">Email Us:</p>
+                                <p class="text-primary-blue font-bold">shardawindows@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <span class="text-accent-green mr-3 mt-1">📍</span>
+                            <div>
+                                <p class="font-medium">Our Location:</p>
+                                <p class="text-gray-300">Rohini, Vijay Vihar (New Delhi)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container text-center">
+            <p>&copy; 2025 **Sharda uPVC Windows**. All rights reserved. | Specializing in Site-Specific uPVC Solutions.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot Implementation -->
+    <!-- Floating Chat Button -->
+    <div id="chat-button" class="fixed bottom-6 right-6 z-[100] w-14 h-14 bg-accent-green rounded-full shadow-2xl flex items-center justify-center cursor-pointer transition-all hover:scale-105">
+        <svg id="chat-icon" class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+    </div>
+
+    <!-- Chat Modal/Container -->
+    <div id="chat-modal" class="fixed bottom-24 right-6 w-full max-w-sm h-96 bg-card-bg rounded-xl shadow-2xl flex flex-col hidden z-[100]">
+        <!-- Chat Header -->
+        <div class="p-4 bg-gray-800 rounded-t-xl flex justify-between items-center border-b border-gray-700">
+            <h4 class="text-white font-bold">Sharda Bot</h4>
+            <button id="close-chat" class="text-gray-400 text-2xl leading-none hover:text-white transition-colors">&times;</button>
+        </div>
+        
+        <!-- Chat Body -->
+        <div id="chat-body" class="flex-1 p-4 overflow-y-auto space-y-4 text-sm">
+            <!-- Initial Message -->
+            <div class="flex justify-start">
+                <div class="chat-bot-bubble">
+                    Hello! I'm Sharda Bot, your uPVC expert. How can I assist you with windows, doors, or our site-specific service today?
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Input -->
+        <div class="p-4 border-t border-gray-700 flex items-center bg-gray-800 rounded-b-xl">
+            <input type="text" id="chat-input" placeholder="Ask about uPVC, installation, or pricing..." class="flex-1 rounded-l-lg border-gray-600 bg-gray-700 text-white shadow-sm p-3 border focus:border-accent-green focus:ring focus:ring-accent-green/50" autocomplete="off">
+            <button id="send-chat" class="px-4 py-3 bg-accent-green text-white font-semibold rounded-r-lg hover:bg-accent-green/90 transition-all ml-1 flex-shrink-0" disabled>
+                <svg id="send-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                <div id="loading-spinner" class="hidden w-5 h-5 border-2 border-white border-t-accent-green rounded-full animate-spin"></div>
+            </button>
+        </div>
+    </div>
+    <!-- End Chatbot Implementation -->
+
+    <!-- JavaScript for single-page navigation and Image Generation/Chatbot -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const imageContainer = document.getElementById('upvc-logo-image');
+            
+            // --- Chatbot Elements and State ---
+            const chatModal = document.getElementById('chat-modal');
+            const chatButton = document.getElementById('chat-button');
+            const closeChatButton = document.getElementById('close-chat');
+            const chatBody = document.getElementById('chat-body');
+            const chatInput = document.getElementById('chat-input');
+            const sendChatButton = document.getElementById('send-chat');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const sendIcon = document.getElementById('send-icon');
+
+            let chatHistory = [
+                { role: "model", parts: [{ text: "Hello! I'm Sharda Bot, your uPVC expert. How can I assist you with windows, doors, or our site-specific service today?" }] }
+            ];
+            const geminiApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=`;
+            const apiKey = "";
+            const systemInstruction = "You are 'Sharda Bot', a friendly, knowledgeable, and professional chatbot for Sharda uPVC Windows & Doors. Your primary purpose is to assist customers with inquiries about uPVC windows, doors, insulation, security features, the 3-step installation process (Site Inspection, Fabrication, Installation), and the 10-year warranty. Use a helpful and concise tone. When asked about general knowledge or external information, use Google Search for grounded answers. Format output in Markdown.";
+
+            // --- Navigation Logic (Existing) ---
+
+            /**
+             * Shows the requested section and updates the navigation bar.
+             * @param {string} sectionId The ID of the section to show (e.g., 'home').
+             */
+            function showSection(sectionId) {
+                // 1. Hide all sections
+                sections.forEach(section => {
+                    section.classList.add('hidden');
+                });
+
+                // 2. Show the requested section
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.classList.remove('hidden');
+                }
+
+                // 3. Update active navigation link styling
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-section') === sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            /**
+             * Handles navigation link and URL hash changes.
+             */
+            function handleNavigation() {
+                const hash = window.location.hash.substring(1) || 'home';
+                showSection(hash);
+            }
+
+            // --- Image Generation Logic (Existing) ---
+
+            /**
+             * Calls the Gemini API to generate a uPVC icon and display it in the header as a watermark.
+             */
+            async function generateAndDisplayLogoImage() {
+                const prompt = "A minimalist, premium icon of a modern white uPVC window with a subtle glass reflection, vector art style, transparent background.";
+                const header = document.querySelector('header');
+            
+                // 1. Show Loading State (Spinner) in the logo area
+                imageContainer.innerHTML = `
+                    <svg class="animate-spin h-6 w-6 text-primary-blue" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                `;
+                
+                // 2. Setup API Call for gemini-2.5-flash-image-preview
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${apiKey}`;
+                const payload = {
+                    contents: [{
+                        parts: [{ text: prompt }]
+                    }],
+                    generationConfig: {
+                        responseModalities: ['TEXT', 'IMAGE']
+                    },
+                };
+            
+                let result = null;
+                let success = false;
+                let retries = 0;
+                const maxRetries = 3;
+            
+                while (!success && retries < maxRetries) {
+                    try {
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+            
+                        if (response.ok) {
+                            result = await response.json();
+                            success = true;
+                        } else {
+                            throw new Error(`API returned status ${response.status}`);
+                        }
+                    } catch (error) {
+                        retries++;
+                        console.error(`Attempt ${retries} failed to generate image:`, error);
+                        if (retries < maxRetries) {
+                            await new Promise(resolve => setTimeout(resolve, Math.pow(2, retries) * 1000)); 
+                        } else {
+                            console.error("Image generation failed after multiple retries:", error);
+                        }
+                    }
+                }
+            
+                // 3. Process Result (Adapted for generateContent response)
+                const base64Data = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData)?.inlineData?.data;
+
+                if (base64Data) {
+                    const imageUrl = `data:image/png;base64,${base64Data}`;
+                    
+                    // Set as Header Watermark Background
+                    header.style.backgroundImage = `
+                        url('${imageUrl}'), 
+                        linear-gradient(to right, #1f2937 0%, #1a1a1a 100%)
+                    `;
+                    header.style.backgroundPosition = 'right 1.5rem center, left top'; 
+                    header.style.backgroundRepeat = 'no-repeat, repeat';
+                    header.style.backgroundSize = '80px, 100%'; 
+
+                    // Reset the primary logo area to the simple fallback icon after generation is complete
+                    // UPDATED: Set fallback icon color for dark mode
+                    imageContainer.innerHTML = `<span class="text-2xl text-primary-blue">🪟</span>`;
+
+                } else {
+                    // Fallback for failure
+                    imageContainer.innerHTML = `<span class="text-2xl text-primary-blue">🪟</span>`;
+                    console.error("Failed to generate or retrieve image data. Using fallback emoji.");
+                }
+            }
+
+
+            // --- Chatbot Functions (New) ---
+
+            /** Renders all messages in the chat history. */
+            function renderMessages() {
+                chatBody.innerHTML = ''; // Clear previous messages
+                chatHistory.forEach(message => {
+                    const messageElement = document.createElement('div');
+                    const text = message.parts[0].text;
+                    
+                    if (message.role === 'user') {
+                        messageElement.className = 'flex justify-end';
+                        messageElement.innerHTML = `<div class="chat-user-bubble">${text}</div>`;
+                    } else if (message.role === 'model') {
+                        messageElement.className = 'flex justify-start';
+                        messageElement.innerHTML = `<div class="chat-bot-bubble">${text.replace(/\n/g, '<br>')}</div>`;
+                    }
+                    chatBody.appendChild(messageElement);
+                });
+                // Auto-scroll to the bottom of the chat
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+
+            /**
+             * Calls the Gemini API with the full chat history and system instructions.
+             * @param {string} userQuery The latest query from the user.
+             */
+            async function callGeminiApi(userQuery) {
+                const historyForApi = chatHistory.map(msg => ({ 
+                    role: msg.role, 
+                    parts: [{ text: msg.parts[0].text }]
+                }));
+
+                const payload = {
+                    contents: historyForApi,
+                    tools: [{ "google_search": {} }], // Enable Google Search grounding
+                    systemInstruction: {
+                        parts: [{ text: systemInstruction }]
+                    },
+                };
+                
+                let result = null;
+                let success = false;
+                let retries = 0;
+                const maxRetries = 3;
+
+                while (!success && retries < maxRetries) {
+                    try {
+                        const response = await fetch(geminiApiUrl + apiKey, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (response.ok) {
+                            result = await response.json();
+                            success = true;
+                        } else {
+                            throw new Error(`API returned status ${response.status}`);
+                        }
+                    } catch (error) {
+                        retries++;
+                        console.error(`Attempt ${retries} failed to call Gemini API:`, error);
+                        if (retries < maxRetries) {
+                            await new Promise(resolve => setTimeout(resolve, Math.pow(2, retries) * 1000));
+                        } else {
+                            return "Sorry, I'm having trouble connecting right now. Please try again later!";
+                        }
+                    }
+                }
+
+                const responseText = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                return responseText || "I couldn't generate a response. Please rephrase your question.";
+            }
+
+            /** Handles the user submitting a message. */
+            async function handleChatSubmission() {
+                const userQuery = chatInput.value.trim();
+                if (!userQuery) return;
+
+                // 1. Disable input/button and show spinner
+                chatInput.value = '';
+                chatInput.disabled = true;
+                sendChatButton.disabled = true;
+                sendIcon.classList.add('hidden');
+                loadingSpinner.classList.remove('hidden');
+
+                // 2. Add user message to history and render
+                chatHistory.push({ role: "user", parts: [{ text: userQuery }] });
+                renderMessages();
+
+                // 3. Get bot response
+                const botResponseText = await callGeminiApi(userQuery);
+
+                // 4. Add bot response to history and render
+                chatHistory.push({ role: "model", parts: [{ text: botResponseText }] });
+                renderMessages();
+
+                // 5. Re-enable input/button
+                chatInput.disabled = false;
+                sendChatButton.disabled = false;
+                sendIcon.classList.remove('hidden');
+                loadingSpinner.classList.add('hidden');
+                chatInput.focus();
+            }
+
+            // --- Event Listeners and Initialization ---
+
+            // Navigation listeners (from existing code)
+            handleNavigation();
+            window.addEventListener('hashchange', handleNavigation);
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault(); 
+                    const targetSectionId = link.getAttribute('data-section');
+                    history.pushState(null, null, `#${targetSectionId}`);
+                    handleNavigation();
+                });
+            });
+            
+            // Chatbot listeners
+            chatButton.addEventListener('click', () => {
+                chatModal.classList.toggle('hidden');
+                if (!chatModal.classList.contains('hidden')) {
+                    chatInput.focus();
+                }
+            });
+
+            closeChatButton.addEventListener('click', () => {
+                chatModal.classList.add('hidden');
+            });
+            
+            chatInput.addEventListener('input', () => {
+                // Enable button only if there is text in the input
+                sendChatButton.disabled = chatInput.value.trim() === '';
+            });
+
+            sendChatButton.addEventListener('click', handleChatSubmission);
+            
+            chatInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter' && !sendChatButton.disabled) {
+                    handleChatSubmission();
+                }
+            });
+
+            // Initial setup calls
+            generateAndDisplayLogoImage();
+            renderMessages(); // Initial render of the bot's greeting
+            
+        });
+    </script>
+</body>
+</html>
