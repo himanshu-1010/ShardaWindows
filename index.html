@@ -19,6 +19,8 @@
                         'accent-green': '#4ade80', // Lighter Green for CTAs
                         'error-red': '#f87171', // Lighter Red
                         'error-bg': '#b91c1c', // Dark Red background
+                        // NEW: WhatsApp Green for the button
+                        'whatsapp-green': '#25D366', 
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -88,7 +90,7 @@
             animation: color-pulse 4s infinite ease-in-out;
         }
         
-        /* --- Custom Background for Home Hero Section (NEW IMAGE: uPVC Detail Exterior) --- */
+        /* --- Custom Background for Home Hero Section (uPVC Detail Exterior) --- */
         .home-hero-bg {
             position: relative; 
             overflow: hidden; 
@@ -103,7 +105,7 @@
             width: 100%;
             height: 100%;
             /* UPDATED: New image - Close-up of a modern white uPVC window exterior */
-            background-image: url('https://mccoymart.com/post/wp-content/uploads/Top-UPVC-Window-Designs-1.jpg');
+            background-image: url('https://images.pexels.com/photos/5998188/pexels-photo-5998188.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -144,7 +146,7 @@
             border: 1px solid #374151; /* Darker border for definition */
         }
 
-        /* --- NEW: Style for the first Hero Text Card with Background Image (NEW IMAGE: uPVC Detail Interior) --- */
+        /* --- NEW: Style for the first Hero Text Card with Background Image (uPVC Detail Interior) --- */
         .hero-text-card-bg {
             /* UPDATED: New image - Stylish interior close-up showing white uPVC frame profile */
             background-image: url('https://images.pexels.com/photos/17983674/pexels-photo-17983674/free-photo-of-white-window-frame.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750'); 
@@ -305,19 +307,19 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
                 <!-- MODIFIED: Replaced broken Pexels link with a dark placeholder image for Patio Door -->
                 <div class="bg-card-bg rounded-xl overflow-hidden shadow-xl">
-                    <img src="data:image/jpeg;base64,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" 
+                    <img src="https://placehold.co/1260x750/374151/ffffff?text=Modern+Sliding+Door" 
                          alt="Modern uPVC Patio Door Installation" class="w-full h-48 object-cover">
                     <p class="p-4 font-semibold text-gray-200">Large Modern uPVC Sliding Doors</p>
                 </div>
                 <!-- MODIFIED: Replaced broken Pexels link with a dark placeholder image for Casement Window -->
                 <div class="bg-card-bg rounded-xl overflow-hidden shadow-xl">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTap_1Pb2HtjyU8R_Qq2FTI1sjgccuUspp9fQ&s" 
+                    <img src="https://placehold.co/1260x750/374151/ffffff?text=Premium+Casement+Window" 
                          alt="uPVC Casement Door Example" class="w-full h-48 object-cover">
                     <p class="p-4 font-semibold text-gray-200">Premium Casement Window</p>
                 </div>
                 <!-- UPDATED: Existing image for Tilt and Turn Window -->
                 <div class="bg-card-bg rounded-xl overflow-hidden shadow-xl">
-                    <img src="https://ik.imagekit.io/xx9wz96aw/Gemini_Generated_Image_l0yj47l0yj47l0yj.png?updatedAt=1759348244447" 
+                    <img src="https://images.pexels.com/photos/11417511/pexels-photo-11417511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
                          alt="uPVC Tilt and Turn Window Example" class="w-full h-48 object-cover">
                     <p class="p-4 font-semibold text-gray-200">Efficient Tilt & Turn Window</p>
                 </div>
@@ -329,13 +331,13 @@
                 </div>
                 <!-- UPDATED: Existing image for Commercial Installation -->
                 <div class="bg-card-bg rounded-xl overflow-hidden shadow-xl">
-                    <img src="https://mccoymart.com/post/wp-content/uploads/Top-UPVC-Window-Designs-1.jpg" 
+                    <img src="https://images.pexels.com/photos/11171353/pexels-photo-11171353.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
                          alt="uPVC Installation in a commercial office" class="w-full h-48 object-cover">
                     <p class="p-4 font-semibold text-gray-200">Commercial Office Installation</p>
                 </div>
                 <!-- UPDATED: Existing image for Soundproofing Demonstration -->
                 <div class="bg-card-bg rounded-xl overflow-hidden shadow-xl">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEkedAXq-Q5r2evA0qWYdR72Rr4U8LY8Ll6w&s" 
+                    <img src="https://images.pexels.com/photos/1294860/pexels-photo-1294860.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
                          alt="uPVC Window Soundproofing Demonstration" class="w-full h-48 object-cover">
                     <p class="p-4 font-semibold text-gray-200">Soundproofing Demonstration</p>
                 </div>
@@ -362,14 +364,14 @@
                 <div class="bg-card-bg rounded-xl shadow-xl p-6">
                     <div class="aspect-video-container">
                          <iframe 
-                            src="https://ik.imagekit.io/xx9wz96aw/WhatsApp%20Video%202025-10-02%20at%2001.30.05_98a42d48.mp4?updatedAt=1759349314239" 
+                            src="https://www.youtube.com/embed/YB0TboRJSoE?rel=0" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen 
                             class="rounded-lg">
                         </iframe>
                     </div>
-                    <p class="mt-3 text-lg font-semibold text-gray-200">Key Features of **uPVC Windows**</p>
+                    <p class="mt-3 text-lg font-semibold text-gray-200">Key Features of **uPVC Windows** (1:07 min)</p>
                     <p class="text-sm text-gray-400">Highlighting insulation, security, and maintenance benefits.</p>
                 </div>
             </div>
@@ -458,6 +460,18 @@
             <p>&copy; 2025 **Sharda uPVC Windows**. All rights reserved. | Specializing in Site-Specific uPVC Solutions.</p>
         </div>
     </footer>
+
+    <!-- WhatsApp Button Implementation (NEW) -->
+    <!-- Positioned at bottom-20 (5rem) to be above the Chat button (bottom-6/1.5rem) -->
+    <a href="https://wa.me/918750101290" target="_blank" 
+       class="fixed bottom-20 right-6 z-[100] w-14 h-14 bg-whatsapp-green rounded-full shadow-2xl flex items-center justify-center cursor-pointer transition-all hover:scale-105"
+       aria-label="Chat with us on WhatsApp">
+        <!-- WhatsApp Icon (SVG for brand recognition) -->
+        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.038 2.001c-5.505 0-9.986 4.48-9.986 9.985 0 1.761.458 3.427 1.34 4.887l-1.467 5.378 5.502-1.446c1.42.77 3.036 1.185 4.611 1.185 5.505 0 9.985-4.48 9.985-9.985s-4.48-9.985-9.985-9.985zm4.846 13.905c-.17.382-.6.58-.946.58-.34 0-.54-.15-.75-.4l-1.43-1.74c-.16-.19-.36-.28-.56-.28-.2 0-.41.13-.59.33l-.86 1.05c-.2.25-.39.3-.61.3-.8 0-1.57-.49-2.22-1.12-.65-.63-1.15-1.45-1.15-2.25 0-.25.07-.46.2-.64l.9-.9c.16-.16.23-.38.23-.6 0-.21-.08-.42-.25-.63l-.7-.84c-.15-.17-.35-.25-.55-.25-.2 0-.37.07-.53.23l-1.07 1.07c-.4.4-.64.93-.64 1.54 0 1.05.47 2.05 1.28 2.86.8.8 1.8 1.25 2.85 1.25.6 0 1.17-.18 1.66-.54l1.6-1.18c.2-.14.45-.19.68-.13.23.05.44.17.6.35l1.63 1.98c.38.4.58.84.58 1.28 0 .4-.18.8-.46 1.14z"/>
+        </svg>
+    </a>
+    <!-- End WhatsApp Button Implementation -->
 
     <!-- Chatbot Implementation -->
     <!-- Floating Chat Button -->
@@ -638,7 +652,7 @@
             }
 
 
-            // --- Chatbot Functions (New) ---
+            // --- Chatbot Functions (Existing) ---
 
             /** Renders all messages in the chat history. */
             function renderMessages() {
